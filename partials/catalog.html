@@ -1,0 +1,23 @@
+
+<p>
+    Recherche : <input ng-model="search.text"/>
+    Prix min.: <input ng-model="search.price.min"/>
+    Prix max.: <input ng-model="search.price.max"/>
+</p>
+
+<ul id="catalog">
+    <li ng-repeat="game in catalog | filter:search.text | interval:'price':search.price.min:search.price.max ">
+        <div class="header">
+            <h3>{{game.name}}</h3>
+            <a href="#/game/{{game.ref}}"><img ng-src="data/img/{{game.ref}}.jpg"/></a>
+        </div>
+        <div class="text">
+            <p class="designer">Auteur : {{game.designer}}</p>
+            <p class="intro">{{game.intro}}</p>
+        </div>
+        <div class="footer">
+            <span class="price">{{game.price | currency}}</span>
+            <button class="add" ng-click="addCart(game)">Ajouter au panier</button>
+        </div>
+    </li>
+</ul>
